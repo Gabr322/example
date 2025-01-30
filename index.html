@@ -6,6 +6,7 @@
     <meta name="description" content="Cuevana - Disfruta de tus películas y series favoritas de manera fácil y rápida. Encuentra las últimas novedades, lo más visto y mucho más.">
     <title>Cuevana - Películas y Series</title>
     <style>
+        /* Estilos previos */
         body {
             font-family: Arial, sans-serif;
             background-color: #1f1f1f;
@@ -40,6 +41,17 @@
         }
         nav a:hover {
             text-decoration: underline;
+        }
+        .filters {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .filters input, .filters select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 5px;
         }
         .content {
             display: flex;
@@ -122,67 +134,108 @@
         <a href="#">Más Vistos</a>
     </nav>
 
+    <div class="filters">
+        <!-- Campo de búsqueda -->
+        <input type="text" id="search" placeholder="Buscar..." oninput="filtrarContenido()">
+        <!-- Filtro de duración -->
+        <select id="durationFilter" onchange="filtrarContenido()">
+            <option value="">Ordenar por duración</option>
+            <option value="asc">Duración: Más corta a más larga</option>
+            <option value="desc">Duración: Más larga a más corta</option>
+        </select>
+    </div>
+
     <div class="content" id="contenedor"></div>
 
     <script>
-        // URL raw del archivo JSON en GitHub
         const url = "https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/names.json";
+        let peliculasData = [];
+        let seriesData = [];
 
         // Función para cargar el contenido (películas y series)
         function cargarContenido() {
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    const contenedor = document.getElementById("contenedor");
-
-                    // Mostrar películas
-                    data.peliculas.forEach(pelicula => {
-                        const movieCard = document.createElement("div");
-                        movieCard.classList.add("movie-card");
-                        movieCard.innerHTML = `
-                            <img src="${pelicula.imagen}" alt="${pelicula.titulo}">
-                            <div class="title">${pelicula.titulo}</div>
-                            <p class="movie-description">${pelicula.descripcion}</p>
-                            <p>Duración: ${pelicula.duracion} minutos</p>
-                            <a href="${pelicula.enlace}" class="btn-watch" target="_blank">Ver Película</a>
-                        `;
-                        contenedor.appendChild(movieCard);
-                    });
-
-                    // Mostrar series
-                    data.series.forEach(serie => {
-                        const serieCard = document.createElement("div");
-                        serieCard.classList.add("serie-card");
-                        serieCard.innerHTML = `
-                            <img src="${serie.imagen}" alt="${serie.titulo}">
-                            <div class="title">${serie.titulo}</div>
-                            <div class="seasons" id="serie-${serie.titulo.replace(/\s/g, '')}-seasons"></div>
-                        `;
-                        contenedor.appendChild(serieCard);
-
-                        // Mostrar temporadas y episodios de la serie
-                        const serieSeasons = document.getElementById(`serie-${serie.titulo.replace(/\s/g, '')}-seasons`);
-                        serie.temporadas.forEach(temporada => {
-                            const temporadaDiv = document.createElement("div");
-                            temporadaDiv.classList.add("season");
-                            temporadaDiv.innerHTML = `<strong>Temporada ${temporada.numero}</strong>`;
-                            
-                            temporada.capitulos.forEach(episodio => {
-                                const episodioDiv = document.createElement("div");
-                                episodioDiv.classList.add("episode");
-                                episodioDiv.innerHTML = `
-                                    ${episodio.titulo} - Duración: ${episodio.duracion} minutos
-                                    <br>
-                                    <a href="${episodio.enlace}" class="btn-watch" target="_blank">Ver Episodio</a>
-                                `;
-                                temporadaDiv.appendChild(episodioDiv);
-                            });
-
-                            serieSeasons.appendChild(temporadaDiv);
-                        });
-                    });
+                    peliculasData = data.peliculas;
+                    seriesData = data.series;
+                    mostrarContenido(peliculasData, seriesData);
                 })
                 .catch(error => console.error("Error al cargar los datos de la serie:", error));
+        }
+
+        // Función para mostrar el contenido
+        function mostrarContenido(peliculas, series) {
+            const contenedor = document.getElementById("contenedor");
+            contenedor.innerHTML = '';
+
+            // Mostrar películas
+            peliculas.forEach(pelicula => {
+                const movieCard = document.createElement("div");
+                movieCard.classList.add("movie-card");
+                movieCard.innerHTML = `
+                    <img src="${pelicula.imagen}" alt="${pelicula.titulo}">
+                    <div class="title">${pelicula.titulo}</div>
+                    <p class="movie-description">${pelicula.descripcion}</p>
+                    <p>Duración: ${pelicula.duracion} minutos</p>
+                    <a href="${pelicula.enlace}" class="btn-watch" target="_blank">Ver Película</a>
+                `;
+                contenedor.appendChild(movieCard);
+            });
+
+            // Mostrar series
+            series.forEach(serie => {
+                const serieCard = document.createElement("div");
+                serieCard.classList.add("serie-card");
+                serieCard.innerHTML = `
+                    <img src="${serie.imagen}" alt="${serie.titulo}">
+                    <div class="title">${serie.titulo}</div>
+                    <div class="seasons" id="serie-${serie.titulo.replace(/\s/g, '')}-seasons"></div>
+                `;
+                contenedor.appendChild(serieCard);
+
+                // Mostrar temporadas y episodios de la serie
+                const serieSeasons = document.getElementById(`serie-${serie.titulo.replace(/\s/g, '')}-seasons`);
+                serie.temporadas.forEach(temporada => {
+                    const temporadaDiv = document.createElement("div");
+                    temporadaDiv.classList.add("season");
+                    temporadaDiv.innerHTML = `<strong>Temporada ${temporada.numero}</strong>`;
+                    
+                    temporada.capitulos.forEach(episodio => {
+                        const episodioDiv = document.createElement("div");
+                        episodioDiv.classList.add("episode");
+                        episodioDiv.innerHTML = `
+                            ${episodio.titulo} - Duración: ${episodio.duracion} minutos
+                            <br>
+                            <a href="${episodio.enlace}" class="btn-watch" target="_blank">Ver Episodio</a>
+                        `;
+                        temporadaDiv.appendChild(episodioDiv);
+                    });
+
+                    serieSeasons.appendChild(temporadaDiv);
+                });
+            });
+        }
+
+        // Función para filtrar por título y duración
+        function filtrarContenido() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            const durationOrder = document.getElementById("durationFilter").value;
+
+            let filteredPeliculas = peliculasData.filter(pelicula => pelicula.titulo.toLowerCase().includes(searchTerm));
+            let filteredSeries = seriesData.filter(serie => serie.titulo.toLowerCase().includes(searchTerm));
+
+            // Ordenar por duración
+            if (durationOrder) {
+                filteredPeliculas.sort((a, b) => durationOrder === 'asc' ? a.duracion - b.duracion : b.duracion - a.duracion);
+                filteredSeries.forEach(serie => {
+                    serie.temporadas.forEach(temporada => {
+                        temporada.capitulos.sort((a, b) => durationOrder === 'asc' ? a.duracion - b.duracion : b.duracion - a.duracion);
+                    });
+                });
+            }
+
+            mostrarContenido(filteredPeliculas, filteredSeries);
         }
 
         // Cargar los datos al cargar la página
