@@ -177,6 +177,98 @@
       ]
     },
     {
+      "titulo": "The Mandalorian",
+      "imagen": "https://static.wikia.nocookie.net/esstarwars/images/7/71/TheArtofTheMandalorian%28Season_One%29ES.jpg/revision/latest?cb=20210630040243",
+      "enlace": "https://linkdelvideo.com/serie1",
+      "temporadas": [
+        {
+          "numero": 1,
+          "capitulos": [
+            {
+              "titulo": "Episodio 1 - Capítulo 1: El mandaloriano",
+              "duracion": 39,
+              "enlace": "https://goodstream.one/video/embed/e8g168i0xs27"
+            },
+            {
+              "titulo": "Episodio 2 - Capítulo 2: El niño",
+              "duracion": 32,
+              "enlace": "https://goodstream.one/video/embed/uyup49zv3vwp"
+            },
+            {
+              "titulo": "Episodio 3 - Capítulo 3: El Pecado",
+              "duracion": 37,
+              "enlace": "https://goodstream.one/video/embed/nzn35p56e0s5"
+            },
+            {
+              "titulo": "Episodio 4 - Capítulo 4: Santuario",
+              "duracion": 41,
+              "enlace": "https://goodstream.one/video/embed/h6wgdzmvbkmv"
+            },
+            {
+              "titulo": "Episodio 5 - Capítulo 5: El Pistolero",
+              "duracion": 35,
+              "enlace": "https://goodstream.one/video/embed/yn39tosvlcvh"
+            },
+            {
+              "titulo": "Episodio 6 - Capítulo 6: El Prisionero",
+              "duracion": 43,
+              "enlace": "https://goodstream.one/video/embed/tmz45u2jw62i"
+            },
+            {
+              "titulo": "Episodio 7 - Capítulo 7: Ajuste de Cuentas",
+              "duracion": 41,
+              "enlace": "https://goodstream.one/video/embed/exim8ylgf3oi"
+            },
+            {
+              "titulo": "Episodio 8 - Capítulo 8: Redención",
+              "duracion": 48,
+              "enlace": "https://goodstream.one/video/embed/cews1f9p4tql"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "capitulos": [
+            {
+              "titulo": "Episodio 1 - Pan y Lotería",
+              "duracion": 65,
+              "enlace": "https://goodstream.one/video/embed/aapawfm9va02"
+            },
+            {
+              "titulo": "Episodio 2 - Fiesta de Halloween",
+              "duracion": 51,
+              "enlace": "https://goodstream.one/video/embed/mdr8aopfoppe"
+            },
+            {
+              "titulo": "Episodio 3 - 001",
+              "duracion": 61,
+              "enlace": "https://goodstream.one/video/embed/zg3pxvgyibwt"
+            },
+            {
+              "titulo": "Episodio 4 - Seis piernas",
+              "duracion": 62,
+              "enlace": "https://goodstream.one/video/embed/75whbwv7pf4h"
+            },
+            {
+              "titulo": "Episodio 5 - Un juego más",
+              "duracion": 76,
+              "enlace": "https://analublogs.xyz/player/v/ZtTss9ZndqTFjjD"
+            },
+            {
+              "titulo": "Episodio 6 - O X",
+              "duracion": 52,
+              "enlace": "https://analublogs.xyz/player/v/E3QGAuGkznXdyP7"
+            },
+            {
+              "titulo": "Episodio 7 - Amigo o enemigo",
+              "duracion": 60,
+              "enlace": "https://analublogs.xyz/player/v/uyLygNqZm5fppif"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "titulo": "Gigantes de la comida",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbTdaX34qImyGGWjoYcajFsF4KBVuvR4xv8oGJtFPcuKCj_VJDDjoij3ksYKXQxLHofTg&usqp=CAU",
       "enlace": "https://linkdelvideo.com/serie1",
