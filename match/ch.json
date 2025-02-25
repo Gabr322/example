@@ -13,14 +13,23 @@
         ]
     },
     {
+        "name": "History (Brasil)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://reidoscanais.tv/embed/?id=history"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://embedcanaistv.com/history/"
+            }
+        ]
+    },
+    {
         "name": "History (España)",
         "options": [
             {
                 "name": "Option 1",
-                "embedUrl": "https://zzcointv.xyz/canales/historiaes/"
-            },
-            {
-                "name": "Option 2",
                 "embedUrl": "https://zzcointv.xyz/canales/historiaes/"
             }
         ]
@@ -31,10 +40,19 @@
             {
                 "name": "Option 1",
                 "embedUrl": "https://topembed.pw/channel/History[USA]"
+            }
+        ]
+    },
+    {
+        "name": "History 2 (Brasil)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://reidoscanais.tv/embed/?id=history2"
             },
             {
                 "name": "Option 2",
-                "embedUrl": "https://topembed.pw/channel/History[USA]"
+                "embedUrl": "https://embedcanaistv.com/history/"
             }
         ]
     },
