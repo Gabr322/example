@@ -224,6 +224,21 @@
             });
         }
 
+        // Función para filtrar contenido basado en el texto de búsqueda
+        function filtrarContenido() {
+            const searchQuery = document.getElementById("search").value.toLowerCase();
+            
+            const filteredPeliculas = peliculasData.filter(pelicula => 
+                pelicula.titulo.toLowerCase().includes(searchQuery)
+            );
+            
+            const filteredSeries = seriesData.filter(serie => 
+                serie.titulo.toLowerCase().includes(searchQuery)
+            );
+
+            mostrarContenido(filteredPeliculas, filteredSeries);
+        }
+
         // Cambiar idioma al hacer clic en el botón
         document.getElementById("languageButton").onclick = function() {
             currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
@@ -236,6 +251,14 @@
             document.getElementById("seriesLink").textContent = currentLanguage === 'es' ? 'Series' : 'Series';
             document.getElementById("newReleasesLink").textContent = currentLanguage === 'es' ? 'Novedades' : 'New Releases';
             document.getElementById("mostViewedLink").textContent = currentLanguage === 'es' ? 'Más Vistos' : 'Most Viewed';
+
+            // Change filter and search placeholder
+            document.getElementById("search").placeholder = currentLanguage === 'es' ? 'Buscar...' : 'Search...';
+            
+            const durationFilter = document.getElementById("durationFilter");
+            durationFilter.options[0].text = currentLanguage === 'es' ? 'Ordenar por duración' : 'Sort by duration';
+            durationFilter.options[1].text = currentLanguage === 'es' ? 'Duración: Más corta a más larga' : 'Duration: Shortest to Longest';
+            durationFilter.options[2].text = currentLanguage === 'es' ? 'Duración: Más larga a más corta' : 'Duration: Longest to Shortest';
 
             cargarContenido();
         }
