@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cuevana - Disfruta de tus películas y series favoritas de manera fácil y rápida. Encuentra las últimas novedades, lo más visto y mucho más.">
-    <title>Cuevana - Películas y Series</title>
+    <meta name="description" content="Cuevana - Enjoy your favorite movies and series easily and quickly. Find the latest releases, most viewed, and much more.">
+    <title>Cuevana - Movies and Series</title>
     <style>
         /* Estilos previos */
         body {
@@ -123,16 +123,21 @@
 </head>
 <body>
     <header>
-        <h1>Cuevana</h1>
-        <p>Disfruta de tus películas y series favoritas</p>
+        <h1 id="siteTitle">Cuevana</h1>
+        <p id="siteDescription">Disfruta de tus películas y series favoritas</p>
     </header>
 
     <nav>
-        <a href="#">Películas</a>
-        <a href="#">Series</a>
-        <a href="#">Novedades</a>
-        <a href="#">Más Vistos</a>
+        <a href="#" id="moviesLink">Películas</a>
+        <a href="#" id="seriesLink">Series</a>
+        <a href="#" id="newReleasesLink">Novedades</a>
+        <a href="#" id="mostViewedLink">Más Vistos</a>
     </nav>
+
+    <!-- Botón para cambiar el idioma -->
+    <div style="text-align: center; margin: 20px;">
+        <button id="languageButton">What Language are you using?</button>
+    </div>
 
     <div class="filters">
         <!-- Campo de búsqueda -->
@@ -148,12 +153,14 @@
     <div class="content" id="contenedor"></div>
 
     <script>
-        const url = "https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/names.json";
         let peliculasData = [];
         let seriesData = [];
+        let currentLanguage = 'es'; // Español por defecto
 
         // Función para cargar el contenido (películas y series)
         function cargarContenido() {
+            const url = currentLanguage === 'en' ? "https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/names_us.json" : "https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/names.json";
+            
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -178,7 +185,7 @@
                     <div class="title">${pelicula.titulo}</div>
                     <p class="movie-description">${pelicula.descripcion}</p>
                     <p>Duración: ${pelicula.duracion} minutos</p>
-                    <a href="${pelicula.enlace}" class="btn-watch" target="_blank">Ver Película</a>
+                    <a href="${pelicula.enlace}" class="btn-watch" target="_blank">${currentLanguage === 'es' ? 'Ver Película' : 'Watch Movie'}</a>
                 `;
                 contenedor.appendChild(movieCard);
             });
@@ -199,7 +206,7 @@
                 serie.temporadas.forEach(temporada => {
                     const temporadaDiv = document.createElement("div");
                     temporadaDiv.classList.add("season");
-                    temporadaDiv.innerHTML = `<strong>Temporada ${temporada.numero}</strong>`;
+                    temporadaDiv.innerHTML = `<strong>${currentLanguage === 'es' ? 'Temporada' : 'Season'} ${temporada.numero}</strong>`;
                     
                     temporada.capitulos.forEach(episodio => {
                         const episodioDiv = document.createElement("div");
@@ -207,7 +214,7 @@
                         episodioDiv.innerHTML = `
                             ${episodio.titulo} - Duración: ${episodio.duracion} minutos
                             <br>
-                            <a href="${episodio.enlace}" class="btn-watch" target="_blank">Ver Episodio</a>
+                            <a href="${episodio.enlace}" class="btn-watch" target="_blank">${currentLanguage === 'es' ? 'Ver Episodio' : 'Watch Episode'}</a>
                         `;
                         temporadaDiv.appendChild(episodioDiv);
                     });
@@ -217,25 +224,20 @@
             });
         }
 
-        // Función para filtrar por título y duración
-        function filtrarContenido() {
-            const searchTerm = document.getElementById("search").value.toLowerCase();
-            const durationOrder = document.getElementById("durationFilter").value;
+        // Cambiar idioma al hacer clic en el botón
+        document.getElementById("languageButton").onclick = function() {
+            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+            this.textContent = currentLanguage === 'es' ? 'What Language are you using?' : '¿Qué idioma estás usando?';
 
-            let filteredPeliculas = peliculasData.filter(pelicula => pelicula.titulo.toLowerCase().includes(searchTerm));
-            let filteredSeries = seriesData.filter(serie => serie.titulo.toLowerCase().includes(searchTerm));
+            // Cambiar los textos del sitio
+            document.getElementById("siteTitle").textContent = currentLanguage === 'es' ? 'Cuevana' : 'Cuevana - Movies and Series';
+            document.getElementById("siteDescription").textContent = currentLanguage === 'es' ? 'Disfruta de tus películas y series favoritas' : 'Enjoy your favorite movies and series';
+            document.getElementById("moviesLink").textContent = currentLanguage === 'es' ? 'Películas' : 'Movies';
+            document.getElementById("seriesLink").textContent = currentLanguage === 'es' ? 'Series' : 'Series';
+            document.getElementById("newReleasesLink").textContent = currentLanguage === 'es' ? 'Novedades' : 'New Releases';
+            document.getElementById("mostViewedLink").textContent = currentLanguage === 'es' ? 'Más Vistos' : 'Most Viewed';
 
-            // Ordenar por duración
-            if (durationOrder) {
-                filteredPeliculas.sort((a, b) => durationOrder === 'asc' ? a.duracion - b.duracion : b.duracion - a.duracion);
-                filteredSeries.forEach(serie => {
-                    serie.temporadas.forEach(temporada => {
-                        temporada.capitulos.sort((a, b) => durationOrder === 'asc' ? a.duracion - b.duracion : b.duracion - a.duracion);
-                    });
-                });
-            }
-
-            mostrarContenido(filteredPeliculas, filteredSeries);
+            cargarContenido();
         }
 
         // Cargar los datos al cargar la página
