@@ -1,1 +1,29 @@
+[
+    {
+        "name": "History",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history.html"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
+            }
+        ]
+    },
+    {
+        "name": "History 2",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history2.html"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history2.html"
+            }
+        ]
+    }
+]
 
