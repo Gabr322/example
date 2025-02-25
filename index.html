@@ -136,7 +136,7 @@
 
     <!-- Botón para cambiar el idioma -->
     <div style="text-align: center; margin: 20px;">
-        <button id="languageButton">What Language are you using?</button>
+        <button id="languageButton">Cambiar a Idioma Ingles</button>
     </div>
 
     <div class="filters">
@@ -227,7 +227,7 @@
         // Cambiar idioma al hacer clic en el botón
         document.getElementById("languageButton").onclick = function() {
             currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
-            this.textContent = currentLanguage === 'es' ? 'What Language are you using?' : '¿Qué idioma estás usando?';
+            this.textContent = currentLanguage === 'es' ? 'Cambiar a Idioma Ingles' : 'Change to Spanish Language';
 
             // Cambiar los textos del sitio
             document.getElementById("siteTitle").textContent = currentLanguage === 'es' ? 'Cuevana' : 'Cuevana - Movies and Series';
