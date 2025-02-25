@@ -130,13 +130,13 @@
             // If isLatam is true, only load embed2.js for Option 1
             if (optionIndex === 0) {
                 const latamScript = document.createElement('script');
-                latamScript.src = 'https://embed.sdfgnksbounce.com/embed.js';
+                latamScript.src = 'https://embed.sdfgnksbounce.com/embed2.js';
                 latamScript.type = 'text/javascript';
                 document.body.appendChild(latamScript);
             } else {
                 // If Option 2, load the default embed.js script
                 const defaultScript = document.createElement('script');
-                defaultScript.src = 'https://embed.sdfgnksbounce.com/embed2.js';
+                defaultScript.src = 'https://embed.sdfgnksbounce.com/embed.js';
                 defaultScript.type = 'text/javascript';
                 document.body.appendChild(defaultScript);
             }
