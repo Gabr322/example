@@ -17,6 +17,118 @@
   ],
   "series": [
     {
+      "titulo": "The Food That Built America",
+      "imagen": "https://resizing.flixster.com/MSNqPFBEN6Cpag_07f8Y5_U4tls=/206x305/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p17145484_b_v13_bk.jpg",
+      "enlace": "https://linkdelvideo.com/serie1",
+      "temporadas": [
+        {
+          "numero": 1,
+          "capitulos": [
+            {
+              "titulo": "Episode 1 - Lines in the Sand",
+              "duracion": 75,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=1&episode=1"
+            },
+            {
+              "titulo": "Episode 2 - Best Served Cold",
+              "duracion": 76,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=1&episode=2"
+            },
+            {
+              "titulo": "Episode 3 - The Spoils of War",
+              "duracion": 76,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=1&episode=3"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "capitulos": [
+            {
+              "titulo": "Episode 1 - Pizza Wars",
+              "duracion": 45,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=1"
+            },
+            {
+              "titulo": "Episode 2 - The Chocolate Rush",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=2"
+            },
+            {
+              "titulo": "Episode 3 - The Kings of Burgers",
+              "duracion": 43,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=3"
+            },
+            {
+              "titulo": "Episode 4 - American Cheese",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=4"
+            },
+            {
+              "titulo": "Episode 5 - Cola Wars",
+              "duracion": 43,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=5"
+            },
+            {
+              "titulo": "Episode 6 - Chip Dynasties",
+              "duracion": 41,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=6"
+            },
+            {
+              "titulo": "Episode 7 - Cookie Wars",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=7"
+            },
+            {
+              "titulo": "Episode 8 - Soup Wars",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=8"
+            },
+            {
+              "titulo": "Episode 9 - Godfathers of Fast Food",
+              "duracion": 43,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=9"
+            },
+            {
+              "titulo": "Episode 10 - The TV Dinner",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=10"
+            },
+            {
+              "titulo": "Episode 11 - Ice Cream Empires",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=11"
+            },
+            {
+              "titulo": "Episode 12 - A Game of Chicken",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=12"
+            },
+            {
+              "titulo": "Episode 13 - When the Chips Are Down",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=13"
+            },
+            {
+              "titulo": "Episode 14 - The Rise of a Rival",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=14"
+            },
+            {
+              "titulo": "Episode 15 - Gum Slingers",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=15"
+            },
+            {
+              "titulo": "Episodio 16 - Breakfast Barons",
+              "duracion": 42,
+              "enlace": "https://vidsrc.in/embed/tv?imdb=tt10098248&season=2&episode=16"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "titulo": "Stranger Things",
       "imagen": "https://link_to_image",
       "temporadas": [
