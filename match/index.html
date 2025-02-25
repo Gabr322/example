@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +37,7 @@
         .channel iframe {
             width: 100%;
             height: 300px;
+            display: none;
         }
         .channel h3 {
             text-align: center;
@@ -51,6 +51,17 @@
         .controls input,
         .controls select {
             padding: 5px;
+        }
+        .option-btn {
+            margin: 5px;
+            padding: 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .option-btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -68,51 +79,65 @@
     </select>
 </div>
 
-<div class="channel-container" id="channel-container">
-
-    <div class="channel" id="history">
-        <h3>History</h3>
-        <div>
-            <h4>JW Player</h4>
-            <script type='text/javascript'> 
-                width='100%', height='100%', id='history'; 
-            </script>
-            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed2.js'></script>
-            <iframe src="https://embed.sdfgnksbounce.com/embed2/history.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-        </div>
-        <div>
-            <h4>Clappr</h4>
-            <script type='text/javascript'> 
-                width='100%', height='100%', id='history'; 
-            </script>
-            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed.js'></script>
-            <iframe src="https://embed.sdfgnksbounce.com/embed/history.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-        </div>
-    </div>
-
-    <div class="channel" id="history2">
-        <h3>History 2</h3>
-        <div>
-            <h4>JW Player</h4>
-            <script type='text/javascript'> 
-                width='100%', height='100%', id='history2'; 
-            </script>
-            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed2.js'></script>
-            <iframe src="https://embed.sdfgnksbounce.com/embed2/history2.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-        </div>
-        <div>
-            <h4>Clappr</h4>
-            <script type='text/javascript'> 
-                width='100%', height='100%', id='history2'; 
-            </script>
-            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed.js'></script>
-            <iframe src="https://embed.sdfgnksbounce.com/embed/history2.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
-        </div>
-    </div>
-
-</div>
+<div class="channel-container" id="channel-container"></div>
 
 <script>
+    // Fetch channel data from API
+    async function fetchChannels() {
+        try {
+            // Replace this URL with your actual API endpoint
+            const response = await fetch('https://your-api-url.com/channels');
+            const channels = await response.json();
+            renderChannels(channels);
+        } catch (error) {
+            console.error('Error fetching channels:', error);
+        }
+    }
+
+    // Function to render channels dynamically from the API data
+    function renderChannels(channels) {
+        const container = document.getElementById('channel-container');
+        container.innerHTML = ''; // Clear existing channels
+
+        channels.forEach(channel => {
+            const channelDiv = document.createElement('div');
+            channelDiv.classList.add('channel');
+
+            const channelTitle = document.createElement('h3');
+            channelTitle.textContent = channel.name;
+            channelDiv.appendChild(channelTitle);
+
+            const buttonsContainer = document.createElement('div');
+            channel.options.forEach((option, index) => {
+                const optionButton = document.createElement('button');
+                optionButton.textContent = option.name;
+                optionButton.classList.add('option-btn');
+                optionButton.addEventListener('click', () => embedOption(channelDiv, option, index));
+                buttonsContainer.appendChild(optionButton);
+            });
+
+            channelDiv.appendChild(buttonsContainer);
+            container.appendChild(channelDiv);
+        });
+    }
+
+    // Function to embed the selected option and remove any previously embedded option
+    function embedOption(channelDiv, option, optionIndex) {
+        // Remove any previously embedded iframe
+        const existingIframe = channelDiv.querySelector('iframe');
+        if (existingIframe) {
+            existingIframe.remove();
+        }
+
+        // Create and embed the selected iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = option.embedUrl;
+        iframe.scrolling = "no";
+        iframe.frameborder = "0";
+        iframe.allowfullscreen = "true";
+        channelDiv.appendChild(iframe);
+    }
+
     // Search Functionality
     function searchChannels() {
         const searchTerm = document.getElementById('search').value.toLowerCase();
@@ -148,6 +173,9 @@
         container.innerHTML = '';
         channels.forEach(channel => container.appendChild(channel));
     }
+
+    // Initialize by fetching channels
+    fetchChannels();
 </script>
 
 </body>
