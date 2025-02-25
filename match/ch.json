@@ -13,15 +13,28 @@
         ]
     },
     {
+        "name": "History (España)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://zzcointv.xyz/canales/historiaes/"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://zzcointv.xyz/canales/historiaes/"
+            }
+        ]
+    },
+    {
         "name": "History (USA)",
         "options": [
             {
-                "name": "Option 1 (Topembed)",
+                "name": "Option 1",
                 "embedUrl": "https://topembed.pw/channel/History[USA]"
             },
             {
                 "name": "Option 2",
-                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
+                "embedUrl": "https://topembed.pw/channel/History[USA]"
             }
         ]
     },
