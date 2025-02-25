@@ -34,6 +34,11 @@
             width: 300px;
             background-color: white;
         }
+        .channel iframe {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
         .channel h3 {
             text-align: center;
         }
@@ -92,33 +97,36 @@
             channelTitle.textContent = channel.name;
             channelDiv.appendChild(channelTitle);
 
+            // Default to the first option's embed URL for each channel
+            const defaultEmbedUrl = channel.options[0].embedUrl;
+            const iframeHTML = `<iframe allowfullscreen width="100%" height="300px" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" src="${defaultEmbedUrl}"></iframe>`;
+            channelDiv.innerHTML += iframeHTML; // Append iframe to the channel div
+
+            // Option buttons to allow the user to change the embed
             const buttonsContainer = document.createElement('div');
             channel.options.forEach((option, index) => {
                 const optionButton = document.createElement('button');
                 optionButton.textContent = option.name;
                 optionButton.classList.add('option-btn');
-                optionButton.addEventListener('click', () => embedOption(channelDiv, option, index));
+                optionButton.addEventListener('click', () => embedOption(channelDiv, option));
                 buttonsContainer.appendChild(optionButton);
             });
-
             channelDiv.appendChild(buttonsContainer);
+
             container.appendChild(channelDiv);
         });
     }
 
-    // Function to embed the selected option and remove any previously embedded option
-    function embedOption(channelDiv, option, optionIndex) {
+    // Function to embed the selected option from the channel
+    function embedOption(channelDiv, option) {
         // Remove any previously embedded iframe
         const existingIframe = channelDiv.querySelector('iframe');
         if (existingIframe) {
             existingIframe.remove();
         }
 
-        // Dynamically write the iframe to the DOM using document.write()
-        const id = option.embedUrl.split('/').pop().split('.')[0]; // Extract ID from URL
-        const iframeHTML = `<iframe allowfullscreen width="100%" height="300px" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" src="https://embed.sdfgnksbounce.com/embed/${id}.html"></iframe>`;
-        
-        // Write iframe to channel div
+        // Dynamically create the iframe for the selected option
+        const iframeHTML = `<iframe allowfullscreen width="100%" height="300px" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" allowtransparency="true" src="${option.embedUrl}"></iframe>`;
         channelDiv.innerHTML += iframeHTML;
     }
 
