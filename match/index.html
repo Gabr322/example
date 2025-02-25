@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -96,11 +96,11 @@
             channelDiv.appendChild(channelTitle);
 
             const buttonsContainer = document.createElement('div');
-            channel.options.forEach((option, index) => {
+            channel.options.forEach(option => {
                 const optionButton = document.createElement('button');
                 optionButton.textContent = option.name;
                 optionButton.classList.add('option-btn');
-                optionButton.addEventListener('click', () => embedOption(channelDiv, option, index, channel.isLatam));
+                optionButton.addEventListener('click', () => embedOption(channelDiv, option));
                 buttonsContainer.appendChild(optionButton);
             });
 
@@ -110,7 +110,7 @@
     }
 
     // Function to embed the selected option and remove any previously embedded option
-    function embedOption(channelDiv, option, optionIndex, isLatam) {
+    function embedOption(channelDiv, option) {
         // Remove any previously embedded iframe
         const existingIframe = channelDiv.querySelector('iframe');
         if (existingIframe) {
@@ -124,26 +124,6 @@
         iframe.frameborder = "0";
         iframe.allowfullscreen = "true";
         channelDiv.appendChild(iframe);
-
-        // Logic for LATAM and non-LATAM options
-        if (isLatam) {
-            // If isLatam is true, only load embed2.js for Option 1
-            if (optionIndex === 0) {
-                const latamScript = document.createElement('script');
-                latamScript.src = 'https://embed.sdfgnksbounce.com/embed2.js';
-                latamScript.type = 'text/javascript';
-                document.body.appendChild(latamScript);
-            } else {
-                // If Option 2, load the default embed.js script
-                const defaultScript = document.createElement('script');
-                defaultScript.src = 'https://embed.sdfgnksbounce.com/embed.js';
-                defaultScript.type = 'text/javascript';
-                document.body.appendChild(defaultScript);
-            }
-        } else {
-            // If isLatam is false, load the default embed.js for both options
-            console.log("bro...");
-        }
     }
 
     // Fetch channel data from API
@@ -158,11 +138,33 @@
         }
     }
 
+    // Function to search channels based on user input
+    function searchChannels() {
+        const searchTerm = document.getElementById('search').value.toLowerCase();
+        const filteredChannels = channels.filter(channel => 
+            channel.name.toLowerCase().includes(searchTerm)
+        );
+        renderChannels(filteredChannels);
+    }
+
+    // Function to sort channels based on selected option
+    function sortChannels() {
+        const sortOrder = document.getElementById('sort').value;
+        const sortedChannels = channels.sort((a, b) => {
+            if (sortOrder === 'a-z') {
+                return a.name.localeCompare(b.name);
+            } else {
+                return b.name.localeCompare(a.name);
+            }
+        });
+        renderChannels(sortedChannels);
+    }
+
+    let channels = []; // Store channels globally for search and sort
+
     // Initialize by fetching channels
     fetchChannels();
 </script>
-
-
 
 </body>
 </html>
