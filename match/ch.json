@@ -1,6 +1,7 @@
 [
     {
         "name": "History",
+        "isLatam": true,
         "options": [
             {
                 "name": "Option 1",
@@ -14,6 +15,7 @@
     },
     {
         "name": "History 2",
+        "isLatam": true,
         "options": [
             {
                 "name": "Option 1",
@@ -26,4 +28,3 @@
         ]
     }
 ]
-
