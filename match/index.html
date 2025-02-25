@@ -86,7 +86,7 @@
     async function fetchChannels() {
         try {
             // Replace this URL with your actual API endpoint
-            const response = await fetch('https://your-api-url.com/channels');
+            const response = await fetch('https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/match/ch.json');
             const channels = await response.json();
             renderChannels(channels);
         } catch (error) {
