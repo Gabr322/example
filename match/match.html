@@ -1,1 +1,154 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV Channels</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .channel-container {
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .channel {
+            margin: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 300px;
+            background-color: white;
+        }
+        .channel iframe {
+            width: 100%;
+            height: 300px;
+        }
+        .channel h3 {
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 15px 0;
+        }
+        .controls input,
+        .controls select {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>TV Channels</h1>
+</header>
+
+<div class="controls">
+    <input type="text" id="search" placeholder="Search Channel..." oninput="searchChannels()">
+    <select id="sort" onchange="sortChannels()">
+        <option value="a-z">Sort A to Z</option>
+        <option value="z-a">Sort Z to A</option>
+    </select>
+</div>
+
+<div class="channel-container" id="channel-container">
+
+    <div class="channel" id="history">
+        <h3>History</h3>
+        <div>
+            <h4>JW Player</h4>
+            <script type='text/javascript'> 
+                width='100%', height='100%', id='history'; 
+            </script>
+            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed2.js'></script>
+            <iframe src="https://embed.sdfgnksbounce.com/embed2/history.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+        <div>
+            <h4>Clappr</h4>
+            <script type='text/javascript'> 
+                width='100%', height='100%', id='history'; 
+            </script>
+            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed.js'></script>
+            <iframe src="https://embed.sdfgnksbounce.com/embed/history.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+    </div>
+
+    <div class="channel" id="history2">
+        <h3>History 2</h3>
+        <div>
+            <h4>JW Player</h4>
+            <script type='text/javascript'> 
+                width='100%', height='100%', id='history2'; 
+            </script>
+            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed2.js'></script>
+            <iframe src="https://embed.sdfgnksbounce.com/embed2/history2.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+        <div>
+            <h4>Clappr</h4>
+            <script type='text/javascript'> 
+                width='100%', height='100%', id='history2'; 
+            </script>
+            <script type='text/javascript' src='https://embed.sdfgnksbounce.com/embed.js'></script>
+            <iframe src="https://embed.sdfgnksbounce.com/embed/history2.html" scrolling="no" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Search Functionality
+    function searchChannels() {
+        const searchTerm = document.getElementById('search').value.toLowerCase();
+        const channels = document.querySelectorAll('.channel');
+        channels.forEach(channel => {
+            const channelName = channel.querySelector('h3').textContent.toLowerCase();
+            if (channelName.includes(searchTerm)) {
+                channel.style.display = '';
+            } else {
+                channel.style.display = 'none';
+            }
+        });
+    }
+
+    // Sort Functionality
+    function sortChannels() {
+        const container = document.getElementById('channel-container');
+        const channels = Array.from(container.children);
+        const sortOrder = document.getElementById('sort').value;
+
+        channels.sort((a, b) => {
+            const nameA = a.querySelector('h3').textContent.toLowerCase();
+            const nameB = b.querySelector('h3').textContent.toLowerCase();
+
+            if (sortOrder === 'a-z') {
+                return nameA < nameB ? -1 : 1;
+            } else {
+                return nameA > nameB ? -1 : 1;
+            }
+        });
+
+        // Clear container and append sorted channels
+        container.innerHTML = '';
+        channels.forEach(channel => container.appendChild(channel));
+    }
+</script>
+
+</body>
+</html>
