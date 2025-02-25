@@ -1,10 +1,23 @@
 [
     {
-        "name": "History",
+        "name": "History (Argentina, Uruguay, Chile)",
         "options": [
             {
-                "name": "Option 1",
+                "name": "Option 1 (JW Player)",
                 "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history.html"
+            },
+            {
+                "name": "Option 2 (Clappr)",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
+            }
+        ]
+    },
+    {
+        "name": "History (USA)",
+        "options": [
+            {
+                "name": "Option 1 (Topembed)",
+                "embedUrl": "https://topembed.pw/channel/History[USA]"
             },
             {
                 "name": "Option 2",
@@ -13,14 +26,14 @@
         ]
     },
     {
-        "name": "History 2",
+        "name": "History 2 (Latinoamérica)",
         "options": [
             {
-                "name": "Option 1",
+                "name": "Option 1 (JW Player)",
                 "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history2.html"
             },
             {
-                "name": "Option 2",
+                "name": "Option 2 (Clappr)",
                 "embedUrl": "https://embed.sdfgnksbounce.com/embed/history2.html"
             }
         ]
