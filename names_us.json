@@ -1,0 +1,41 @@
+{
+  "peliculas": [
+    {
+      "titulo": "Inception",
+      "descripcion": "A mind-bending thriller that blurs the line between reality and dreams.",
+      "duracion": 148,
+      "imagen": "https://link_to_image",
+      "enlace": "https://link_to_movie"
+    },
+    {
+      "titulo": "The Dark Knight",
+      "descripcion": "Batman faces off against the Joker, a criminal mastermind who seeks to bring Gotham to its knees.",
+      "duracion": 152,
+      "imagen": "https://link_to_image",
+      "enlace": "https://link_to_movie"
+    }
+  ],
+  "series": [
+    {
+      "titulo": "Stranger Things",
+      "imagen": "https://link_to_image",
+      "temporadas": [
+        {
+          "numero": 1,
+          "capitulos": [
+            {
+              "titulo": "Chapter One: The Vanishing of Will Byers",
+              "duracion": 47,
+              "enlace": "https://link_to_episode"
+            },
+            {
+              "titulo": "Chapter Two: The Weirdo on Maple Street",
+              "duracion": 50,
+              "enlace": "https://link_to_episode"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
