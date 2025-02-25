@@ -82,6 +82,8 @@
 <div class="channel-container" id="channel-container"></div>
 
 <script>
+    let channels = []; // Store channels globally for search and sort
+
     // Function to render channels dynamically from the API data
     function renderChannels(channels) {
         const container = document.getElementById('channel-container');
@@ -96,11 +98,11 @@
             channelDiv.appendChild(channelTitle);
 
             const buttonsContainer = document.createElement('div');
-            channel.options.forEach(option => {
+            channel.options.forEach((option, index) => {
                 const optionButton = document.createElement('button');
                 optionButton.textContent = option.name;
                 optionButton.classList.add('option-btn');
-                optionButton.addEventListener('click', () => embedOption(channelDiv, option));
+                optionButton.addEventListener('click', () => embedOption(channelDiv, option, index));
                 buttonsContainer.appendChild(optionButton);
             });
 
@@ -110,7 +112,7 @@
     }
 
     // Function to embed the selected option and remove any previously embedded option
-    function embedOption(channelDiv, option) {
+    function embedOption(channelDiv, option, optionIndex) {
         // Remove any previously embedded iframe
         const existingIframe = channelDiv.querySelector('iframe');
         if (existingIframe) {
@@ -124,6 +126,23 @@
         iframe.frameborder = "0";
         iframe.allowfullscreen = "true";
         channelDiv.appendChild(iframe);
+
+        // Load scripts based on the option, including LATAM scripts
+        if (optionIndex === 0) {
+            // First option: Embed the LATAM script if needed
+            loadScript('https://embed.sdfgnksbounce.com/embed2.js');
+        } else {
+            // Second option: Default embed.js
+            loadScript('https://embed.sdfgnksbounce.com/embed.js');
+        }
+    }
+
+    // Function to load the script dynamically
+    function loadScript(src) {
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = 'text/javascript';
+        document.body.appendChild(script);
     }
 
     // Fetch channel data from API
@@ -131,7 +150,7 @@
         try {
             // Replace this URL with your actual API endpoint
             const response = await fetch('https://raw.githubusercontent.com/Gabr322/example/refs/heads/main/match/ch.json');
-            const channels = await response.json();
+            channels = await response.json(); // Store the channels globally
             renderChannels(channels);
         } catch (error) {
             console.error('Error fetching channels:', error);
@@ -159,8 +178,6 @@
         });
         renderChannels(sortedChannels);
     }
-
-    let channels = []; // Store channels globally for search and sort
 
     // Initialize by fetching channels
     fetchChannels();
