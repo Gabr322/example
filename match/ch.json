@@ -26,6 +26,15 @@
         ]
     },
     {
+        "name": "History (México)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://live.sdfgnksbounce.com/latam2.php?id=49_"
+            }
+        ]
+    },
+    {
         "name": "History (España)",
         "options": [
             {
