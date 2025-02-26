@@ -35,6 +35,15 @@
         ]
     },
     {
+        "name": "History (UK)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://daddylive.mp/embed/stream-686.php"
+            }
+        ]
+    },
+    {
         "name": "History (España)",
         "options": [
             {
