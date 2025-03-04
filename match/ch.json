@@ -9,6 +9,10 @@
             {
                 "name": "Option 2 (Clappr)",
                 "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
+            },
+            {
+                "name": "Option 3",
+                "embedUrl": "https://www.clarogratis.com/envivo2/history.php"
             }
         ]
     },
@@ -84,6 +88,10 @@
             {
                 "name": "Option 2 (Clappr)",
                 "embedUrl": "https://embed.sdfgnksbounce.com/embed/history2.html"
+            },
+            {
+                "name": "Option 3",
+                "embedUrl": "https://www.clarogratis.com/envivo2/history2.php"
             }
         ]
     }
