@@ -79,6 +79,19 @@
         ]
     },
     {
+        "name": "Televisión Pública",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://embed.slkdhfdhldeportes.com/embed2/tvpublica.html"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://embed.slkdhfdhldeportes.com/embed/tvpublica.html"
+            }
+        ]
+    },
+    {
         "name": "History 2 (Latinoamérica)",
         "options": [
             {
