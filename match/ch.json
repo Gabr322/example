@@ -1,22 +1,5 @@
 [
     {
-        "name": "History (Argentina, Uruguay, Chile)",
-        "options": [
-            {
-                "name": "Option 1 (JW Player)",
-                "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history.html"
-            },
-            {
-                "name": "Option 2 (Clappr)",
-                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
-            },
-            {
-                "name": "Option 3",
-                "embedUrl": "https://www.clarogratis.com/envivo2/history.php"
-            }
-        ]
-    },
-    {
         "name": "History (Brasil)",
         "options": [
             {
@@ -33,7 +16,15 @@
         "name": "History (México)",
         "options": [
             {
-                "name": "Option 1",
+                "name": "Option 1 (JW Player)",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed2/history.html"
+            },
+            {
+                "name": "Option 2 (Clappr)",
+                "embedUrl": "https://embed.sdfgnksbounce.com/embed/history.html"
+            },
+            {
+                "name": "Option 3",
                 "embedUrl": "https://live.sdfgnksbounce.com/latam2.php?id=49_"
             }
         ]
@@ -62,6 +53,19 @@
             {
                 "name": "Option 1",
                 "embedUrl": "https://topembed.pw/channel/History[USA]"
+            },
+            {
+                "name": "Option 2",
+                "embedUrl": "https://www.ustream.to/embed?id=history-channel&remove_watermark=true"
+            }
+        ]
+    },
+    {
+        "name": "History (Italy)",
+        "options": [
+            {
+                "name": "Option 1",
+                "embedUrl": "https://topembed.pw/channel/History[Italy]"
             }
         ]
     },
