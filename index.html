@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cuevana - Enjoy your favorite movies and series easily and quickly. Find the latest releases, most viewed, and much more.">
-    <title>Cuevana - Movies and Series</title>
+    <meta name="description" content="Cuevana - Disfruta de tus películas y series favoritas. Encuentra los últimos estrenos, las más vistas y mucho más.">
+    <title>Cuevana - Películas y Series</title>
     <style>
         /* Estilos previos */
         body {
@@ -82,42 +82,39 @@
             background-color: #444;
             font-size: 20px;
         }
-        .seasons {
-            background-color: #222;
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 8px;
-        }
-        .season {
-            background-color: #333;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 6px;
-        }
-        .episode {
-            margin-left: 20px;
-            color: #aaa;
-        }
-        .btn-watch {
-            display: block;
-            margin: 10px auto;
-            padding: 10px;
-            background-color: #0055A4;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 18px;
-        }
-        .btn-watch:hover {
-            background-color: #004080;
-        }
         .movie-description {
             padding: 10px;
             background-color: #222;
             color: #ddd;
             font-size: 16px;
             text-align: justify;
+        }
+        .server-selector {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .server-selector select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .pagination button {
+            background-color: #0055A4;
+            color: white;
+            padding: 10px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .pagination button:hover {
+            background-color: #004080;
         }
     </style>
 </head>
@@ -140,9 +137,7 @@
     </div>
 
     <div class="filters">
-        <!-- Campo de búsqueda -->
         <input type="text" id="search" placeholder="Buscar..." oninput="filtrarContenido()">
-        <!-- Filtro de duración -->
         <select id="durationFilter" onchange="filtrarContenido()">
             <option value="">Ordenar por duración</option>
             <option value="asc">Duración: Más corta a más larga</option>
@@ -152,9 +147,14 @@
 
     <div class="content" id="contenedor"></div>
 
+    <!-- Paginación -->
+    <div class="pagination" id="pagination"></div>
+
     <script>
         let peliculasData = [];
         let seriesData = [];
+        let currentPage = 1;
+        const itemsPerPage = 24;
         let currentLanguage = 'es'; // Español por defecto
 
         // Función para cargar el contenido (películas y series)
@@ -174,10 +174,16 @@
         // Función para mostrar el contenido
         function mostrarContenido(peliculas, series) {
             const contenedor = document.getElementById("contenedor");
+            const pagination = document.getElementById("pagination");
             contenedor.innerHTML = '';
 
+            // Calcular el índice de las películas actuales
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const peliculasPage = peliculas.slice(startIndex, endIndex);
+
             // Mostrar películas
-            peliculas.forEach(pelicula => {
+            peliculasPage.forEach(pelicula => {
                 const movieCard = document.createElement("div");
                 movieCard.classList.add("movie-card");
                 movieCard.innerHTML = `
@@ -185,43 +191,28 @@
                     <div class="title">${pelicula.titulo}</div>
                     <p class="movie-description">${pelicula.descripcion}</p>
                     <p>Duración: ${pelicula.duracion} minutos</p>
+                    <div class="server-selector">
+                        <select>
+                            ${pelicula.servers.map(server => `<option value="${server.link}">${server.name}</option>`).join('')}
+                        </select>
+                    </div>
                     <a href="${pelicula.enlace}" class="btn-watch" target="_blank">${currentLanguage === 'es' ? 'Ver Película' : 'Watch Movie'}</a>
                 `;
                 contenedor.appendChild(movieCard);
             });
 
-            // Mostrar series
-            series.forEach(serie => {
-                const serieCard = document.createElement("div");
-                serieCard.classList.add("serie-card");
-                serieCard.innerHTML = `
-                    <img src="${serie.imagen}" alt="${serie.titulo}">
-                    <div class="title">${serie.titulo}</div>
-                    <div class="seasons" id="serie-${serie.titulo.replace(/\s/g, '')}-seasons"></div>
-                `;
-                contenedor.appendChild(serieCard);
-
-                // Mostrar temporadas y episodios de la serie
-                const serieSeasons = document.getElementById(`serie-${serie.titulo.replace(/\s/g, '')}-seasons`);
-                serie.temporadas.forEach(temporada => {
-                    const temporadaDiv = document.createElement("div");
-                    temporadaDiv.classList.add("season");
-                    temporadaDiv.innerHTML = `<strong>${currentLanguage === 'es' ? 'Temporada' : 'Season'} ${temporada.numero}</strong>`;
-                    
-                    temporada.capitulos.forEach(episodio => {
-                        const episodioDiv = document.createElement("div");
-                        episodioDiv.classList.add("episode");
-                        episodioDiv.innerHTML = `
-                            ${episodio.titulo} - Duración: ${episodio.duracion} minutos
-                            <br>
-                            <a href="${episodio.enlace}" class="btn-watch" target="_blank">${currentLanguage === 'es' ? 'Ver Episodio' : 'Watch Episode'}</a>
-                        `;
-                        temporadaDiv.appendChild(episodioDiv);
-                    });
-
-                    serieSeasons.appendChild(temporadaDiv);
-                });
-            });
+            // Paginación
+            const totalPages = Math.ceil(peliculas.length / itemsPerPage);
+            pagination.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement("button");
+                pageButton.textContent = i;
+                pageButton.onclick = () => {
+                    currentPage = i;
+                    mostrarContenido(peliculas, series);
+                };
+                pagination.appendChild(pageButton);
+            }
         }
 
         // Función para filtrar contenido basado en el texto de búsqueda
@@ -243,23 +234,6 @@
         document.getElementById("languageButton").onclick = function() {
             currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
             this.textContent = currentLanguage === 'es' ? 'Cambiar a Idioma Ingles' : 'Change to Spanish Language';
-
-            // Cambiar los textos del sitio
-            document.getElementById("siteTitle").textContent = currentLanguage === 'es' ? 'Cuevana' : 'Cuevana - Movies and Series';
-            document.getElementById("siteDescription").textContent = currentLanguage === 'es' ? 'Disfruta de tus películas y series favoritas' : 'Enjoy your favorite movies and series';
-            document.getElementById("moviesLink").textContent = currentLanguage === 'es' ? 'Películas' : 'Movies';
-            document.getElementById("seriesLink").textContent = currentLanguage === 'es' ? 'Series' : 'Series';
-            document.getElementById("newReleasesLink").textContent = currentLanguage === 'es' ? 'Novedades' : 'New Releases';
-            document.getElementById("mostViewedLink").textContent = currentLanguage === 'es' ? 'Más Vistos' : 'Most Viewed';
-
-            // Change filter and search placeholder
-            document.getElementById("search").placeholder = currentLanguage === 'es' ? 'Buscar...' : 'Search...';
-            
-            const durationFilter = document.getElementById("durationFilter");
-            durationFilter.options[0].text = currentLanguage === 'es' ? 'Ordenar por duración' : 'Sort by duration';
-            durationFilter.options[1].text = currentLanguage === 'es' ? 'Duración: Más corta a más larga' : 'Duration: Shortest to Longest';
-            durationFilter.options[2].text = currentLanguage === 'es' ? 'Duración: Más larga a más corta' : 'Duration: Longest to Shortest';
-
             cargarContenido();
         }
 
