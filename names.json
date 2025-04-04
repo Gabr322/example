@@ -6,6 +6,16 @@
       "descripcion": "Secuela de Joker (2019), de nuevo con Phoenix como Arthur Fleck, y que muestra su relación con el personaje de Harley Quinn, interpretado por Lady Gaga.",
       "duracion": 138,
       "enlace": "https://analublogs.xyz/player/v/LFm4GxMRxybzpAZ"
+      "servers": [
+        {
+          "name": "Servidor 1",
+          "link": "https://example.com/servidor1"
+        },
+        {
+          "name": "Servidor 2",
+          "link": "https://example.com/servidor2"
+        }
+      ],
     },
     {
       "titulo": "Guasón",
