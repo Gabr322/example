@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script language="javascript" type="text/javascript"> if(self==top) { top.location.href="https://www.cablevisionhd.com"; } </script>
+<script language="javascript" type="text/javascript"> if(self==top) { top.location.href="https://gabr322.github.io/example/match/"; } </script>
 
 
 
